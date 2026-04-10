@@ -1,0 +1,19 @@
+div {
+     width: 150px;
+    height: 150px;
+}
+#r {
+    background-color: red;
+}
+#b {
+    background-color: blue;
+}
+#c {
+    background-color: orange;
+}
+#d {
+    background-color: green;
+}
+#e {
+    background-color: yellow;
+}
