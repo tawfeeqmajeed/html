@@ -1,0 +1,12 @@
+body {
+    color: white;
+}
+tr {
+    background-color: blue;
+}
+#red {
+    background-color: rgb(255, 0, 0);
+}
+#yellow {
+    background-color: rgb(110, 89, 64);
+}
