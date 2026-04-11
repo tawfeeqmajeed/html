@@ -14,6 +14,12 @@ div {
 #d {
     background-color: green;
 }
-#e {
+.e {
     background-color: yellow;
+}
+.f {
+    background-color: pink;
+}
+.g {
+    background-color: black;
 }
