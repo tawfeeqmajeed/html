@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study App</title>
+    <style>
+        :root {
+            --bg: #08192f;
+            --surface: #112a4a;
+            --surface-alt: #1b3b6b;
+            --text: #eff6ff;
+            --muted: #cbd5e1;
+            --accent: #38bdf8;
+            --accent-2: #f472b6;
+            --green: #4ade80;
+            --yellow: #facc15;
+            --red: #fb7185;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 30%),
+                        linear-gradient(180deg, #0b1220 0%, #08192f 100%);
+            color: var(--text);
+        }
+        .container {
+            max-width: 1080px;
+            margin: 28px auto;
+            padding: 24px;
+            border-radius: 28px;
+            background: rgba(9, 25, 47, 0.95);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 18px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: clamp(2rem, 2.5vw, 3rem);
+            letter-spacing: -1px;
+        }
+        header p {
+            margin: 0;
+            color: var(--muted);
+            max-width: 640px;
+        }
+        .grid {
+            display: grid;
+            gap: 20px;
+        }
+        .top-grid {
+            grid-template-columns: 1.2fr 0.8fr;
+        }
+        .card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.06));
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 22px;
+            padding: 22px;
+        }
+        .card h2 {
+            margin: 0 0 16px;
+            color: #ffffff;
+        }
+        .card .small {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .list li {
+            margin-bottom: 12px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.18s ease, border-color 0.18s ease;
+        }
+        .list li:hover {
+            transform: translateY(-1px);
+            border-color: rgba(56, 189, 248, 0.55);
+        }
+        .badge {
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+        .badge.math { background: rgba(59, 130, 246, 0.18); color: #bfdbfe; }
+        .badge.science { background: rgba(34, 197, 94, 0.18); color: #d1fae5; }
+        .badge.history { background: rgba(245, 158, 11, 0.18); color: #fde68a; }
+        .badge.english { background: rgba(236, 72, 153, 0.18); color: #fbcfe8; }
+        .notice {
+            border-radius: 18px;
+            padding: 14px 18px;
+            margin-bottom: 14px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .notice strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+        .status {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+        .status.available { background: rgba(34, 197, 94, 0.2); color: #d9f99d; }
+        .status.busy { background: rgba(239, 68, 68, 0.18); color: #fecaca; }
+        button, .btn {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 18px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: filter 0.18s ease, transform 0.18s ease;
+        }
+        button:hover, .btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+        .btn-primary { background: var(--accent); color: #08263a; }
+        .btn-secondary { background: var(--accent-2); color: #1f2937; }
+        .btn-link { background: transparent; color: var(--accent); padding: 0; }
+        .search-bar {
+            width: 100%;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            color: var(--text);
+        }
+        .progress {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress>div {
+            height: 100%;
+            border-radius: 999px;
+        }
+        .pdf-list {
+            display: grid;
+            gap: 12px;
+        }
+        .file-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .file-link svg { width: 18px; height: 18px; fill: currentColor; }
+        .footer {
+            margin-top: 22px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 860px) {
+            .top-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1>Study App</h1>
+                <p>Organize subjects, topics, notices, and PDF study materials in one colorful dashboard.</p>
+            </div>
+            <div>
+                <button class="btn btn-primary" id="toggleAvailability">Toggle Availability</button>
+            </div>
+        </header>
+
+        <div class="grid top-grid">
+            <div class="card">
+                <h2>Subjects</h2>
+                <p class="small">Search subjects, click one to view topics, and track progress.</p>
+                <input type="search" id="subjectSearch" class="search-bar" placeholder="Search subjects...">
+                <ul class="list" id="subjectList"></ul>
+            </div>
+            <div class="card">
+                <h2>Availability</h2>
+                <div class="notice" id="availabilityNotice">You are currently not available.</div>
+                <div class="notice" id="summaryNotice" style="background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.3);">
+                    <strong>Quick stats</strong>
+                    <div id="statsText">4 subjects, 12 topics, 3 notices.</div>
+                </div>
+                <button class="btn btn-secondary" id="addNoticeBtn">Add Notice</button>
+            </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 20px; gap: 20px;">
+            <div class="card">
+                <h2>Topics</h2>
+                <p class="small">Related topics for the selected subject.</p>
+                <ul class="list" id="topicList"></ul>
+            </div>
+            <div class="card">
+                <h2>PDF Resources</h2>
+                <p class="small">Download your study guides and reference PDFs.</p>
+                <div class="pdf-list" id="pdfList"></div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <h2>Notices</h2>
+            <p class="small">Keep your important study reminders in view.</p>
+            <div id="noticeList"></div>
+        </div>
+
+        <div class="footer">Tip: Use the search box to focus on a subject, then add notices for faster review.</div>
+    </div>
+
+    <script>
+        const subjects = [
+            { name: 'Math', color: 'math', topics: ['Algebra', 'Geometry', 'Calculus'], progress: 72 },
+            { name: 'Science', color: 'science', topics: ['Physics', 'Chemistry', 'Biology'], progress: 60 },
+            { name: 'History', color: 'history', topics: ['Ancient', 'Medieval', 'Modern'], progress: 45 },
+            { name: 'English', color: 'english', topics: ['Grammar', 'Writing', 'Literature'], progress: 84 }
+        ];
+
+        const pdfFiles = [
+            { label: 'Math Notes', file: 'resources/math-notes.pdf' },
+            { label: 'Science Guide', file: 'resources/science-guide.pdf' },
+            { label: 'English Grammar', file: 'resources/english-grammar.pdf' }
+        ];
+
+        const noticeData = [
+            { title: 'Exam reminder', message: 'Exam next Monday: review past papers.' },
+            { title: 'Project deadline', message: 'Submit project by Friday 11:59 PM.' },
+            { title: 'Study group', message: 'Group session at 6 PM tomorrow.' }
+        ];
+
+        let available = false;
+        let selectedSubjectIndex = 0;
+
+        function renderSubjects(filter = '') {
+            const subjectList = document.getElementById('subjectList');
+            subjectList.innerHTML = '';
+            const filtered = subjects.filter(subject => subject.name.toLowerCase().includes(filter.toLowerCase()));
+
+            filtered.forEach((subject, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${subject.name}</span><span class="badge ${subject.color}">${subject.progress}%</span>`;
+                li.style.cursor = 'pointer';
+                li.onclick = () => {
+                    selectedSubjectIndex = subjects.indexOf(subject);
+                    selectSubject(selectedSubjectIndex);
+                };
+                subjectList.appendChild(li);
+            });
+        }
+
+        function renderTopics(index = 0) {
+            const topicList = document.getElementById('topicList');
+            topicList.innerHTML = '';
+            const topicItems = subjects[index].topics;
+
+            topicItems.forEach(topic => {
+                const li = document.createElement('li');
+                li.textContent = topic;
+                topicList.appendChild(li);
+            });
+        }
+
+        function renderPDFs() {
+            const pdfList = document.getElementById('pdfList');
+            pdfList.innerHTML = '';
+
+            pdfFiles.forEach(pdf => {
+                const a = document.createElement('a');
+                a.href = pdf.file;
+                a.className = 'file-link';
+                a.target = '_blank';
+                a.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm9 1.5V8h4.5L15 3.5ZM8.5 12h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5Zm0 4h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5Z"></path></svg>${pdf.label}`;
+                pdfList.appendChild(a);
+            });
+        }
+
+        function renderNotices() {
+            const noticeList = document.getElementById('noticeList');
+            noticeList.innerHTML = '';
+
+            noticeData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'notice';
+                div.innerHTML = `<strong>${item.title}</strong><span>${item.message}</span>`;
+                noticeList.appendChild(div);
+            });
+        }
+
+        function renderAvailability() {
+            const availabilityNotice = document.getElementById('availabilityNotice');
+            availabilityNotice.innerHTML = available ? '<strong>Available</strong> Ready for study sessions.' : '<strong>Unavailable</strong> Take a break or set a new study block.';
+            availabilityNotice.className = available ? 'notice status available' : 'notice status busy';
+            document.getElementById('toggleAvailability').textContent = available ? 'Set Busy' : 'Set Available';
+        }
+
+        function renderStats() {
+            const statsText = document.getElementById('statsText');
+            statsText.textContent = `${subjects.length} subjects, ${subjects.reduce((sum, s) => sum + s.topics.length, 0)} topics, ${noticeData.length} notices.`;
+        }
+
+        function selectSubject(index) {
+            renderTopics(index);
+            const items = document.querySelectorAll('#subjectList li');
+            items.forEach((item, i) => item.style.background = i === index ? 'rgba(56, 189, 248, 0.18)' : 'rgba(255,255,255,0.03)');
+        }
+
+        document.getElementById('toggleAvailability').addEventListener('click', () => {
+            available = !available;
+            renderAvailability();
+        });
+
+        document.getElementById('subjectSearch').addEventListener('input', event => {
+            renderSubjects(event.target.value);
+        });
+
+        document.getElementById('addNoticeBtn').addEventListener('click', () => {
+            const newTitle = prompt('Notice title:', 'New reminder');
+            const newMessage = prompt('Notice details:', 'Add your study note here.');
+            if (newTitle && newMessage) {
+                noticeData.unshift({ title: newTitle, message: newMessage });
+                renderNotices();
+                renderStats();
+            }
+        });
+
+        renderSubjects();
+        renderTopics(selectedSubjectIndex);
+        renderPDFs();
+        renderNotices();
+        renderAvailability();
+        renderStats();
+    </script>
+</body>
+</html>
