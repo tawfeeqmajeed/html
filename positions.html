@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangladesh Flag</title>
+    <style>
+        body {
+            margin: 100PX;
+            min-height: 100vh;
+            display: flex;
+            content: center;
+            align-items: center;
+            background: #f0f0f0;
+        }
+
+        .flag {
+            width: 320px;
+            height: 180px;
+            background: #006a4e;
+            position: relative;
+            border: 2px solid #004837;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .flag .circle {
+            position: absolute;
+            width: 108px;
+            height: 108px;
+            border-radius: 56%;
+            background: #f42a41;
+            top: 49%;
+            left: 48%;
+            transform: translate(-49%, -49%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flag" aria-label="Flag of Bangladesh">
+        <div class="circle"></div>
+    </div>
+</body>
+</html>
