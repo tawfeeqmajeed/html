@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Practical 4</title>
+        <script>
+            function validateForm() {
+                var name = document.getsElementById["name"].value;
+                var email = document.getsElementById["email"].value;
+                var password = document.getsElementById["password"].value;
+                var age = document.getsElementById["age"].value;
+                var deptt = document.getsElementById["deptt"].value;
+
+                if (name == ""|| email == "" || password == "" || age == "" || deptt == "") {
+                    alert("All fields must be filled out");
+                    return false;
+                }
+                if (pass.length < 6) {
+                    alert("Error: Password must be at least 6 characters long");
+                    return false;
+                }
+                alert("Form submitted successfully!");
+                    return true;
+                }
+        </script>
+    </head>
+
+    <body>
+        <h2 style="text-align: center;">Registration Form....</h2>
+        <form onsubmit="return validateForm()" style="width: 300; margin: auto;">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br><br>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age"><br><br>
+        Department: <br><select id="deptt">
+ <option value="">---Select---</option>
+            <option value="C0">CSE</option>
+            <option value="C0">Civil</option>
+            <option value="C0">Automobile</option>
+        </select><br><br>
+           
+            Gender:
+            <input type="radio" name="gen">Male
+            <input type="radio" name="gen">Female
+            <br><br>
+
+
+            <input type="submit" value="Register Now">
+        </form>
+    </body>
+
+</html>

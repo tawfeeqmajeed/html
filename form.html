@@ -5,60 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
 
-    <form action="" method="post">
-        <p>
-            <lable>ENTER your name:</lable>
-            <input type="text">
-        </p>
-        <p>
-            <lable> Enter your age</lable>
-            <input type="number">
+    <form action="" method="post" class="container mt-5">
+        <div class="form-group mb-3">
+            <lable  class="form-label">ENTER your name:</lable>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <lable class="form-label"> Enter your age</lable>
+            <input type="number" class="form-control">
 
-        </p>
-        <p>
-            <lable> Enter your date of birth</lable>
-            <input type="date">
-        </p>
-        <p>
-            Enter your gender:
-            <input type="radio value"male name="gender">
-            <lable>male</lable>
+        </div>
+        <div class="form-group mb-3">
+            <lable class="form-label"> Enter your date of birth</lable>
+            <input type="date" class="form-control">
+        </div>
+        <div class="form-group mb-3 form-check">
+            <lable class="form-label form-check-label">Enter your gender:</lable>
+            <input type="radio" value="male" name="gender">
+            <lable class="form-label">male</lable>
             <input type="radio" name="gender" value="male">
-            <lable>Female</lable>
+            <lable class="form-label">Female</lable>
             <input type="radio" name="gender" value="female">
-        </p>
-        <p>
-            <lable>Enter your password:</lable>
-            <input type="password">
-        </p>
-        <p>
-            <lable>Enter your Email:</lable>
-            <input type="Email">
-        </p>
-        <p>
-            <lable>ENTER your  phone number:</lable>
-            <input type="phone number">
-        </p>
-        <p>
+        </div>
+        <div class="form-group mb-3">
+            <lable class="form-label">Enter your password:</lable>
+            <input type="password" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <lable class="form-label">Enter your Email:</lable>
+            <input type="Email" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <lable class="form-label">ENTER your  phone number:</lable>
+            <input type="phone number" class="form-control">
+        </div>
+        <div class="form-group mb-3">
              Enter your subjects:
              <input type="checkbox" name="sub" value="math">math
              <input type="checkbox" name="sub" value="science">science
              <input type="checkbox" name="sub" value="english">english
              <input type="checkbox" name="sub" value="urdu">urdu
-        </p>
-            <input type="submit" value="Signup">
-        </p>
+        </div>
+            <input type="submit" value="Sign Up" class="btn btn-primary">
+        </div>
         
 </body>
 
 </html>
-<style>
-    body{
-        background-color: rgb(37, 186, 223);
-    }
-</style>
